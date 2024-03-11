@@ -7,12 +7,12 @@ import {
   Pressable,
   ScrollView,
 } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { businessAccountItems } from "../components/constants/drawerFeed";
 
 export default function BusinessAccount({navigation}) {
   return (
-    <View className="flex-1 mt-20">
+    <View className="flex-1 bg-white">
         <ScrollView>
       <View className="bg-[#c5deff57] m-4 rounded-xl">
         <View className="p-6 gap-y-2">
@@ -20,21 +20,21 @@ export default function BusinessAccount({navigation}) {
             Register your company to Gett Business, for free!
           </Text>
           {businessAccountItems.map((item, index) => (
-            <View className="flex-row items-center py-2" key={index}>
-              <Feather name="check" size={24} color="black" />
-              <Text className="text-[16px] px-4 text-gray-700">
+            <View className="flex-row items-center py-1" key={index}>
+             <FontAwesome name="check" size={20} color="black" />
+              <Text className="text-[14px] font-semibold px-4 text-gray-500">
                 {item.title}
               </Text>
             </View>
           ))}
-
+<View className="pt-2">
           <View className="bg-[#ff9d00] rounded-xl">
             <Pressable android_ripple={{ color: "gray", borderless: true }} style={{width:"100%"}} onPress={()=>navigation.navigate('signup')}>
               <Text className="text-[16px] text-center p-4 font-bold  text-white ">
                 Register a company
               </Text>
             </Pressable>
-          </View>
+            </View></View>
         </View>
       </View>
 

@@ -1,22 +1,27 @@
-import { View, Text, SafeAreaView, Platform, TouchableOpacity, Pressable } from 'react-native'
+import { View, Text, SafeAreaView, Platform, TouchableOpacity, Pressable, StyleSheet } from 'react-native'
 import React from 'react'
 import { EvilIcons } from '@expo/vector-icons';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+/* import Map from '../components/map';  */
 
 const ios = Platform.OS === 'ios';
 
 export default function Home({navigation}) {
   return (
-    <SafeAreaView className = {ios ? "-mb-2" : "mb-2"}>
-    <View className="m-4 relative">
-      <View className="absolute top-6 left-2 rounded-[800px] shadow-xl bg-white flex-1 items-center justify-center">
-      <Pressable android_ripple={{color:"gray" , borderless:true }} onPress={()=>navigation.toggleDrawer()}>
-        <View  className=" p-3">
-      <EvilIcons name="navicon" size={18} color="black"/>
+    <View style={styles.container}>
+         {/* <Map/>  */}
+      <View className="m-4 absolute top-6 left-2 rounded-[800px] shadow-xl bg-white flex-1 items-center justify-center">
+      <Pressable android_ripple={{color:"gray" , borderless:true }} onPress={()=>navigation.toggleDrawer()} style={{}}>
+        <View  className="p-2 justify-center items-center rounded-[800px]">
+      <EvilIcons name="navicon" size={24} color="black"/>
       </View>
       </Pressable>
-      </View>
     </View>
-    </SafeAreaView>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex: 1,
+  }
+})

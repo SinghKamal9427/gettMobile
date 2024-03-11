@@ -18,8 +18,8 @@ export const iconData = [
     name: "Add a Debit/Credit Card",
     component: MaterialCommunityIcons,
   },
-  { icon: "discount", name: "Coupon Code", component: MaterialIcons },
-  { icon: "chat", name: "Chat with us", component: MaterialIcons },
+  { icon: "discount", name: "Coupon Code", component: MaterialIcons },/* 
+  { icon: "chat", name: "Chat with us", component: MaterialIcons }, */
   { icon: "settings", name: "Settings", component: Ionicons },
 ];
 

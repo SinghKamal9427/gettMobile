@@ -27,7 +27,7 @@ export default function DrawerContent({navigation}) {
      <Text className = "text-black text-xl">CloseIcon</Text>
      </TouchableOpacity> */}
      <View  className='pt-10'>
-     <TouchableComponent  background={TouchableNativeFeedback.Ripple('#a5a4a442', false)}>
+     <TouchableComponent  background={TouchableNativeFeedback.Ripple('#a5a4a442', false)} onPress={()=>navigation.navigate('accountDetails')}>
       <View  className=" gap-4 py-4 items-center justify-end">
       <View className="p-4 border border-[#a5a4a417] rounded-[600px]"><Entypo name="camera" size={20} color="black" /></View>
       <View>

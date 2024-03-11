@@ -1,9 +1,10 @@
 import { CardField, CardFieldInput, useStripe } from '@stripe/stripe-react-native';
 import UseStore from '../components/store/useStore';
+import { ActivityIndicator, View } from 'react-native';
 
 export default function PaymentScreen() {
 
-  const {setCardInfo} = UseStore();
+  const {setCardInfo , loaderCard} = UseStore();
     const { confirmPayment } = useStripe();
 
     const handleCardInput = (cardDetails) => {
@@ -15,6 +16,7 @@ export default function PaymentScreen() {
     }
 
     return (
+      <View className = "flex-1 px-4 bg-white">
         <CardField
       postalCodeEnabled={false}
       placeholders={{
@@ -27,8 +29,6 @@ export default function PaymentScreen() {
         borderRadius: 8,
         fontSize: 14,
         fontFamily: 'Macondo-Regular',
-        placeholderColor: '#A020F0',
-        textColor: '#0000ff',
       }}
       style={{
         width: '100%',
@@ -42,6 +42,8 @@ export default function PaymentScreen() {
         console.log('focusField', focusedField);
       }}
     />
+    {loaderCard &&  <ActivityIndicator size="large" />}
+    </View>
     );
   }
 

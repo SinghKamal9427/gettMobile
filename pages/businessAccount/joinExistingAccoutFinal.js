@@ -9,10 +9,24 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Linking from "expo-linking";
 
 export default function JoinExistingAccoutFinal({route}) {
 
     const {emailAddress} = route.params;
+
+
+    const redirectToEmailApp = async () => {
+      const url = 'mailto:';
+      
+      const supported = await Linking.canOpenURL(url);
+      
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        console.log("Can't open email app");
+      }
+    };
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -35,6 +49,7 @@ export default function JoinExistingAccoutFinal({route}) {
             <Pressable
               android_ripple={{ color: "gray", borderless: true }}
               style={{ width: "100%" }}
+              onPress={redirectToEmailApp}
             >
               <Text className="text-[16px] text-center p-4 font-bold  text-white ">
                 Open Email app

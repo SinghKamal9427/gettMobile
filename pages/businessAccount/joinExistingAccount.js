@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -15,6 +15,20 @@ export default function JoinExistingAccount({navigation}) {
   const [text, onChangeText] = useState("");
   const [focused, setFocused] = useState(false);
 
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false)
+
+
+  useEffect(()=>{
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+     if(emailPattern.test(text)){
+      setIsButtonEnabled(true)
+     }else{
+      if(isButtonEnabled){
+      setIsButtonEnabled(false)
+      }
+      return;
+     }
+  },[text])
 
   return (
     <KeyboardAvoidingView
@@ -54,11 +68,12 @@ export default function JoinExistingAccount({navigation}) {
           </View>
 
           <View className=" justify-end">
-            <View className=" bg-[#ff9d00] rounded-xl mb-4">
+            <View className={`${isButtonEnabled ? 'bg-[#ff9d00]' : 'bg-slate-500'} rounded-xl mb-4`}>
               <Pressable
                 android_ripple={{ color: "gray", borderless: true }}
                 style={{ width: "100%" }}
                 onPress={()=>navigation.navigate('joinExistingAccoutFinal' , {emailAddress: text})}
+                disabled={!isButtonEnabled}
               >
                 <Text className="text-[16px] text-center p-4 font-bold  text-white ">
                   Continue

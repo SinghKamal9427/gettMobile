@@ -2,31 +2,52 @@ import { createElement, useState } from "react";
 import { Context } from "./createContextStore";
 import { createToken } from "@stripe/stripe-react-native";
 import axios from "axios";
+import { Alert, ActivityIndicator } from "react-native";
 
 export default function StoreProvider({ children }) {
   const [statusBottomSheet, setStatusBottomSheet] = useState(false);
-
+  const [countryCode , setCountryCode] = useState("+91")
   const [cardInfo, setCardInfo] = useState();
+  const [userAuthenticated , setUserAuthenticated] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [loaderCard , setLoaderCard] = useState(false);
+  const [isSaveEnable , setIsSaveEnable] = useState(false);
 
   const handleCardToken = async () => {
+    if(!cardInfo){
+      Alert.alert('Try again', 'Please enter correct card info', [
+        {text: 'OK'},
+      ]);
+    }
     if (cardInfo) {
+      setLoaderCard(true);
       try {
         const resToken = await createToken({ ...cardInfo, type: "Card" });
         const tokenId = resToken.token.id;
 
-        console.log(tokenId)
         if(tokenId){
-        await axios.post("http://192.168.0.171:4000/createCustomer",
+        await axios.post("https://gett-clone.onrender.com/createCustomer",
         {
           tokenId: tokenId  // Pass tokenId as part of the request body
         }).then((response) => {
-            console.log("Data:", response.data);
+          setLoaderCard(false);
+          Alert.alert('Congrats', 'Your card safe successfully', [
+            {text: 'OK'},
+          ]);
+           /*  console.log("Data:", response.data); */
           }).catch((error) => {
-            console.error("Error:", error);
+            setLoaderCard(false);
+            Alert.alert('warning!', 'Please re-check card information', [
+              {text: 'OK'},
+            ]);/* 
+            console.error("Error:", error); */
           });
         }
       } catch (err) {
-        alert("Error creating card: " + err.message);
+        setLoaderCard(false);
+        Alert.alert('oops!', 'Error creating card', [
+          {text: 'OK'},
+        ]);
       }
     }
   };
@@ -36,6 +57,16 @@ export default function StoreProvider({ children }) {
     setStatusBottomSheet,
     setCardInfo,
     handleCardToken,
+    countryCode,
+    setCountryCode,
+    userAuthenticated,
+    setUserAuthenticated,
+    phoneNumber,
+    setPhoneNumber,
+    loaderCard,
+    setLoaderCard,
+    isSaveEnable,
+    setIsSaveEnable
   };
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

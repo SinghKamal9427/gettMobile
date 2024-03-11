@@ -23,12 +23,18 @@ export default function SignupWebComponent ({navigation}) {
     const hideHeaderAndFooter = `
     const header = document.getElementById('signup_header');
     const footer = document.getElementById('signup_footer');
+    const login = document.getElementById('login_link');
+
     if(header){
         header.style.display = 'none';
     }
 
     if(footer){
         footer.style.display = 'none';
+    }
+
+    if(login){
+      login.style.display = 'none';
     }
 `
   return (<>
