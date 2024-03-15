@@ -32,7 +32,8 @@
           "protonmail"
         ]
       },
-      "googleMapsApiKey": "AIzaSyCIzAKymHkOopghukYuCWV0rFy8HLhGGsk"
+      "googleMapsApiKey": "AIzaSyCIzAKymHkOopghukYuCWV0rFy8HLhGGsk",
+      "bundleIdentifier": "com.kamaldeep228.GettClone"
     },
     "android": {
       "adaptiveIcon": {
@@ -43,18 +44,19 @@
         "android.permission.RECORD_AUDIO"
       ],
       "package": "com.kamaldeep228.GettClone",
-      "googleMapsApiKey": "AIzaSyCIzAKymHkOopghukYuCWV0rFy8HLhGGsk"
+      "googleMapsApiKey": "AIzaSyCIzAKymHkOopghukYuCWV0rFy8HLhGGsk",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       [
-      "expo-camera",
-      {
-        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-      }
-    ],
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ],
       [
         "expo-secure-store"
       ],

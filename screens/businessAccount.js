@@ -29,7 +29,14 @@ export default function BusinessAccount({navigation}) {
           ))}
 <View className="pt-2">
           <View className="bg-[#ff9d00] rounded-xl">
-            <Pressable android_ripple={{ color: "gray", borderless: true }} style={{width:"100%"}} onPress={()=>navigation.navigate('signup')}>
+            <Pressable android_ripple={{ color: "gray", borderless: true }} style={({pressed})=>[
+              Platform.select({
+                ios:{
+                  backgroundColor: pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                  borderRadius:"12px"
+                }
+              }), {width:"100%"}
+            ]} onPress={()=>navigation.navigate('signup')}>
               <Text className="text-[16px] text-center p-4 font-bold  text-white ">
                 Register a company
               </Text>
@@ -44,7 +51,16 @@ export default function BusinessAccount({navigation}) {
             Company already registerd?
           </Text>
           <View className="bg-[#ffffff] rounded-xl">
-            <Pressable android_ripple={{ color: "gray", borderless: true }}  style={{width:"100%"}} onPress={()=>navigation.navigate('joinExistingAccount')}>
+            <Pressable android_ripple={{ color: "gray", borderless: true }}  style={({pressed})=>[
+              Platform.select({
+                ios:{
+                  backgroundColor : pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                  borderRadius:"12px"
+                }
+              }),{
+                width:"100%"
+              }
+            ]} onPress={()=>navigation.navigate('joinExistingAccount')}>
               <Text className="text-[16px] p-4 text-center font-bold text-black">
                 Join existing account
               </Text>

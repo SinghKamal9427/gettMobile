@@ -50,7 +50,7 @@ export default function CountryCode({navigation}) {
         inputPlaceholder="Search Country"
         // when picker button press you will get the country object with dial code
         pickerButtonOnPress={hanldePickerButton}
-        enableModalAvoiding={true}
+        enableModalAvoiding={false}
         style={{
           // Styles for whole modal [View]
           modal: {

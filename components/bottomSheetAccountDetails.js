@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Animated, Pressable, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Animated, Pressable, Dimensions, Platform } from 'react-native';
 import UseStore from './store/useStore';
 import { Entypo , MaterialIcons  } from '@expo/vector-icons';
 
@@ -64,7 +64,16 @@ const BottomSheetAccountDetails = ({handleClose , imagePicker , cameraPicker}) =
                 <Animated.View style={[styles.bottomSheet, { transform: [{ translateY: slide }] }]}>
                     <View className="py-2 flex-col">
                     <View className='rounded-xl'>
-                    <Pressable android_ripple={{ color: "gray", borderless: true }}  style={{width:"100%"}} onPress={cameraPicker}>
+                    <Pressable android_ripple={{ color: "gray", borderless: true }}  style={({pressed})=>[
+                  Platform.select({
+                    ios:{
+                      backgroundColor : pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                      borderRadius:"12px"
+                    }
+                  }),{
+                    width:"100%"
+                  }
+                ]} onPress={cameraPicker}>
                     <View className='flex-row items-center p-2 py-4 space-x-4'>
                     <Entypo name="camera" size={20} color="black" />
                     <Text style={{ fontSize: 16, color:"gray"}} className="font-semibold">Take Photo</Text>
@@ -73,7 +82,16 @@ const BottomSheetAccountDetails = ({handleClose , imagePicker , cameraPicker}) =
                     </View>
 
                     <View className='rounded-xl'>
-                    <Pressable android_ripple={{ color: "gray", borderless: true }}  style={{width:"100%"}} onPress={imagePicker}>
+                    <Pressable android_ripple={{ color: "gray", borderless: true }}  style={({pressed})=>[
+                  Platform.select({
+                    ios:{
+                      backgroundColor : pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                      borderRadius:"12px"
+                    }
+                  }),{
+                    width:"100%"
+                  }
+                ]} onPress={imagePicker}>
                     <View className='flex-row items-center p-2 py-4 space-x-4'>
                     <MaterialIcons name="photo-library" size={20} color="black" />
                     <Text style={{ fontSize: 16, color:"gray"}} className="font-semibold">Choose From Library</Text>
@@ -82,7 +100,16 @@ const BottomSheetAccountDetails = ({handleClose , imagePicker , cameraPicker}) =
                     </View>
                     </View>
                     <View className="bg-[#ffffff] border-2 border-gray-200   rounded-xl ">
-            <Pressable android_ripple={{ color: "gray", borderless: true }}  style={{width:"100%"}} onPress={closeModal}>
+            <Pressable android_ripple={{ color: "gray", borderless: true }}  style={({pressed})=>[
+                  Platform.select({
+                    ios:{
+                      backgroundColor : pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                      borderRadius:"12px"
+                    }
+                  }),{
+                    width:"100%"
+                  }
+                ]} onPress={closeModal}>
               <Text className="text-[16px]  p-4 text-center font-bold text-black">
                 Back
               </Text>

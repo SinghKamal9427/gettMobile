@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Animated, Pressable, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Animated, Pressable, Dimensions, Platform } from 'react-native';
 import UseStore from './store/useStore';
 
 const screenHeight = Dimensions.get('window').height;
@@ -67,7 +67,16 @@ const BottomSheet = ({navigation}) => {
                     <Text style={{ fontSize: 16 , marginTop: 10 , color:"gray"}}>Sure you want to cancel registering a company?</Text>
                     <View style={{ marginTop: 20 }}>
                     <View className="bg-[#ffffff] border-2 border-gray-200   rounded-xl">
-            <Pressable android_ripple={{ color: "gray", borderless: true }}  style={{width:"100%"}} onPress={()=>{navigation.goBack() , closeModal()}}>
+            <Pressable android_ripple={{ color: "gray", borderless: true }}  style={({pressed})=>[
+                Platform.select({
+                  ios:{
+                    backgroundColor : pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                    borderRadius:"12px"
+                  }
+                }),{
+                  width:"100%"
+                }
+              ]} onPress={()=>{navigation.goBack() , closeModal()}}>
               <Text className="text-[16px]  p-4 text-center font-bold text-black">
                 Cancel registration
               </Text>
@@ -75,7 +84,16 @@ const BottomSheet = ({navigation}) => {
           </View>
 
           <View className="bg-[#ff9d00] rounded-xl mt-4">
-            <Pressable android_ripple={{ color: "gray", borderless: true }} style={{width:"100%"}} onPress={closeModal}>
+            <Pressable android_ripple={{ color: "gray", borderless: true }} style={({pressed})=>[
+                Platform.select({
+                  ios:{
+                    backgroundColor : pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                    borderRadius:"12px"
+                  }
+                }),{
+                  width:"100%"
+                }
+              ]} onPress={closeModal}>
               <Text className="text-[16px] text-center p-4 font-bold  text-white ">
                 Continue registration
               </Text>

@@ -71,7 +71,16 @@ export default function JoinExistingAccount({navigation}) {
             <View className={`${isButtonEnabled ? 'bg-[#ff9d00]' : 'bg-slate-500'} rounded-xl mb-4`}>
               <Pressable
                 android_ripple={{ color: "gray", borderless: true }}
-                style={{ width: "100%" }}
+                style={({pressed})=>[
+                  Platform.select({
+                    ios:{
+                      backgroundColor : pressed ? 'rgba(0,0,0,0.1)' : 'transparent',
+                      borderRadius:"12px"
+                    }
+                  }),{
+                    width:"100%"
+                  }
+                ]}
                 onPress={()=>navigation.navigate('joinExistingAccoutFinal' , {emailAddress: text})}
                 disabled={!isButtonEnabled}
               >

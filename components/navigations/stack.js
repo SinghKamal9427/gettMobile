@@ -101,7 +101,7 @@ const handleGet = async () => {
   ) : !userAuthenticated ? ( <Stack.Navigator initialRouteName="welcomeSignup" >
         <Stack.Screen name="welcomeSignup" component={WelcomeSignup} options= {{headerShown:false}}/>
         <Stack.Screen name="countryCode" component={CountryCode} options= {{headerTitle:"Select Country" , headerLeft:() => null}}/>
-        <Stack.Screen name="verification" component={Verification} options= {{headerTitle:"Phone Verification" }}/>
+        <Stack.Screen name="verification" component={Verification} options= {{headerTitle:"Phone Verification", headerTransparent:true }}/>
         </Stack.Navigator>) : 
         (  <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options= {{headerShown:false}}/>

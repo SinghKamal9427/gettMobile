@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "508077343671",
+    "project_id": "gettclone",
+    "storage_bucket": "gettclone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:508077343671:android:4d62fb99ae7a65ef1b1e32",
+        "android_client_info": {
+          "package_name": "com.kamaldeep228.GettClone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqOTMVKY3-pYfRDXkn9me3UtgWaCmfUeQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
