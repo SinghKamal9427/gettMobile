@@ -12,6 +12,7 @@ export default function StoreProvider({ children }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loaderCard , setLoaderCard] = useState(false);
   const [isSaveEnable , setIsSaveEnable] = useState(false);
+  const [socketIo , setSocketIo] = useState()
 
   const handleCardToken = async () => {
     if(!cardInfo){
@@ -66,7 +67,9 @@ export default function StoreProvider({ children }) {
     loaderCard,
     setLoaderCard,
     isSaveEnable,
-    setIsSaveEnable
+    setIsSaveEnable,
+    socketIo,
+    setSocketIo
   };
 
   return <Context.Provider value={contextValue}>{children}</Context.Provider>;

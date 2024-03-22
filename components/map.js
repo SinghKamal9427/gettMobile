@@ -16,8 +16,13 @@ import * as Linking from "expo-linking";
 const { width, height } = Dimensions.get("window");
 import { useFocusEffect } from "@react-navigation/native";
 import MapViewDirections from "react-native-maps-directions";
+import UseStore from "./store/useStore";
 
 export default function Map({ navigation }) {
+
+const {socketIo} = UseStore();
+
+
   const [cordinates, setCordinates] = useState({
     latitude: 37.78825,
     longitude: -122.4324,
@@ -106,7 +111,9 @@ export default function Map({ navigation }) {
     /* setCordinates(newRegion); */
   };
 
-
+  const handleUserLocationChanged = (event) => {
+    socketIo.emit('recieve_location_driver' , event.nativeEvent.coordinate);
+  };
 
   return (
     <View style={styles.container}>
@@ -121,6 +128,7 @@ export default function Map({ navigation }) {
         showsUserLocation={true}
         followsUserLocation={true}
         provider={PROVIDER_GOOGLE}
+        onUserLocationChange={handleUserLocationChanged}
       >
         <Marker
           coordinate={{
@@ -148,7 +156,7 @@ export default function Map({ navigation }) {
         ))} 
         <MapViewDirections origin={origin}
     destination={destination}
-    apikey="AIzaSyCIzAKymHkOopghukYuCWV0rFy8HLhGGsk"
+    apikey="AIzaSyDB5zh8sAIvSAHrkSkCjWz2EiWzt6ERufk"
     />
       </MapView>
     </View>
